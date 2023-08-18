@@ -16,7 +16,7 @@ def intro_page():
 def dashboard_page():
     st.title("Incrustar Dashboard de Power BI")
     
-    powerbi_url = "https://app.powerbi.com/reportEmbed?reportId=a1cf4ba5-dd6b-4cc8-865a-23e9cfb4bcd1&autoAuth=true&ctid=2ad1d8e0-ddb8-4fed-ad6c-842541fceb89"
+    powerbi_url = "https://app.powerbi.com/reportEmbed?reportId=29ef71cf-051b-4691-a8fa-47799ebe2366&autoAuth=true&ctid=c4a66c34-2bb7-451f-8be1-b2c26a430158"
     st.markdown(f'<iframe title="Dashboard_Proyecto_Final" width="1140" height="541.25" src="{powerbi_url}" frameborder="0" allowFullScreen="true"></iframe>', unsafe_allow_html=True)
 
 # Función para la pantalla Machine Learning
