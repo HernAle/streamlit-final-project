@@ -10,15 +10,16 @@ nltk.download('stopwords')
 # Función para la pantalla Dashboard
 def dashboard_page():
     st.title("Dashboard con Power BI")
-    st.write("Bienvenido a la pantalla de Data Analytics. Aquí podrás interactuar con el dashboard ")
+    st.write("Bienvenido a la pantalla de Data Analytics. Aquí podrás interactuar con el Dashboard ")
     
     powerbi_url = "https://app.powerbi.com/reportEmbed?reportId=29ef71cf-051b-4691-a8fa-47799ebe2366&autoAuth=true&ctid=c4a66c34-2bb7-451f-8be1-b2c26a430158"
+  
+    # Ajustar el margen derecho del iframe para alejarlo del lado derecho
+    iframe_style = "width: 1140px; margin: 0 auto; margin-right: 100px"
+    iframe_code = f'<iframe title="Dashboard_Proyecto_Final" height="541.25" src="{powerbi_url}" frameborder="0" allowFullScreen="true" style="{iframe_style}"></iframe>'
+    st.markdown(iframe_code, unsafe_allow_html=True)
 
-    iframe_code = f'<iframe title="Dashboard_Proyecto_Final" width="1140" height="541.25" src="{powerbi_url}" frameborder="0" allowFullScreen="true"></iframe>'
-    
-    st.markdown(f'<div style="display: flex; justify-content: center;">{iframe_code}</div>', unsafe_allow_html=True)
-
-# Función para la pantalla Machine Learning
+  # Función para la pantalla Machine Learning
 def machine_learning_page():
     st.title("Machine Learning")
     st.write("Bienvenido a la pantalla Machine Learning. Aquí podrás interactuar con modelos de ML.")
