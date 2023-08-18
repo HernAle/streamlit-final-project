@@ -7,17 +7,16 @@ import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
 
-# Función para la pantalla Readme
-def intro_page():
-    st.title("Introduccion")
-    st.write("Bienvenido a la pantalla Introduccion. Aquí encontrarás información sobre la aplicación.")
-
 # Función para la pantalla Dashboard
 def dashboard_page():
-    st.title("Incrustar Dashboard de Power BI")
+    st.title("Dashboard con Power BI")
+    st.write("Bienvenido a la pantalla de Data Analytics. Aquí podrás interactuar con el dashboard ")
     
     powerbi_url = "https://app.powerbi.com/reportEmbed?reportId=29ef71cf-051b-4691-a8fa-47799ebe2366&autoAuth=true&ctid=c4a66c34-2bb7-451f-8be1-b2c26a430158"
-    st.markdown(f'<iframe title="Dashboard_Proyecto_Final" width="1140" height="541.25" src="{powerbi_url}" frameborder="0" allowFullScreen="true"></iframe>', unsafe_allow_html=True)
+
+    iframe_code = f'<iframe title="Dashboard_Proyecto_Final" width="1140" height="541.25" src="{powerbi_url}" frameborder="0" allowFullScreen="true"></iframe>'
+    
+    st.markdown(f'<div style="display: flex; justify-content: center;">{iframe_code}</div>', unsafe_allow_html=True)
 
 # Función para la pantalla Machine Learning
 def machine_learning_page():
@@ -50,13 +49,11 @@ def machine_learning_page():
         st.write("Sentimiento Predicho:", predicted_sentimiento[0])
 
 # Configuración de la barra lateral de navegación
-menu_options = ["Introduccion", "Dashboard", "Machine Learning"]
+menu_options = ["Dashboard", "Machine Learning"]
 selected_page = st.sidebar.radio("Selecciona una opción:", menu_options)
 
 # Mostrar la página correspondiente según la selección
-if selected_page == "Readme":
-    intro_page()
-elif selected_page == "Dashboard":
+if selected_page == "Dashboard":
     dashboard_page()
 elif selected_page == "Machine Learning":
     machine_learning_page()
