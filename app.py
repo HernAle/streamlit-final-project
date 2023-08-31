@@ -4,8 +4,23 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
 from nltk.corpus import stopwords
 import nltk
+from PIL import Image
 nltk.download('punkt')
 nltk.download('stopwords')
+
+# Función para la pantalla Dashboard
+def intro_page():
+
+    # Cargar una imagen usando Pillow
+    image_path = 'data-solution.png'
+    image = Image.open(image_path)
+    st.image(image, caption='Logo Data Solution', use_column_width=True)
+    # Leer el contenido del archivo Markdown
+    with open("intro.md", "r") as markdown_file:
+        markdown_text = markdown_file.read()
+
+    # Mostrar el contenido del archivo Markdown
+    st.markdown(markdown_text, unsafe_allow_html=True)
 
 # Función para la pantalla Dashboard
 def dashboard_page():
@@ -19,7 +34,8 @@ def dashboard_page():
     iframe_code = f'<iframe title="Dashboard_Proyecto_Final" height="541.25" src="{powerbi_url}" frameborder="0" allowFullScreen="true" style="{iframe_style}"></iframe>'
     st.markdown(iframe_code, unsafe_allow_html=True)
 
-  # Función para la pantalla Machine Learning
+
+# Función para la pantalla Machine Learning
 def machine_learning_page():
     st.title("Machine Learning")
     st.write("Bienvenido a la pantalla Machine Learning. Aquí podrás interactuar con modelos de ML.")
@@ -49,12 +65,27 @@ def machine_learning_page():
         predicted_sentimiento = loaded_model.predict(tfidf_review)
         st.write("Sentimiento Predicho:", predicted_sentimiento[0])
 
+    loaded_pipe = joblib.load("bert_model.joblib")
+
+    text_to_analyze = "The food was more or less, the attention should be faster"
+    #text_to_analyze = "The attention was not so good they took time to serve me"
+    #text_to_analyze = "The menu was very varied and the food was very good."
+
+    result = loaded_pipe(text_to_analyze)
+    sentiment = result[0]['label']
+    confidence = result[0]['score']
+
+    print("Sentimiento:", sentiment)
+    print("Confianza:", confidence)
+
 # Configuración de la barra lateral de navegación
-menu_options = ["Dashboard", "Machine Learning"]
+menu_options = ["Introduccion","Dashboard", "Machine Learning"]
 selected_page = st.sidebar.radio("Selecciona una opción:", menu_options)
 
 # Mostrar la página correspondiente según la selección
-if selected_page == "Dashboard":
+if selected_page == "Introduccion":
+    intro_page()
+elif selected_page == "Dashboard":
     dashboard_page()
 elif selected_page == "Machine Learning":
     machine_learning_page()
